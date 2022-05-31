@@ -64,6 +64,7 @@ h1 {
 button {
     border-radius: 24px;
     background-color: #fffcf2;
+    font-size: 20px;
 }
 
 button:hover {
