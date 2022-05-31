@@ -4,6 +4,7 @@ let numFirst = 0;
 let numSecond = 0;
 let exists = false; 
 let operator = "none";
+let start = false;
 
 // variable declarations
 
@@ -49,7 +50,7 @@ function addListeners() {
         if (e.key == "+" || e.key == "-"  || e.key == "*" ||
         e.key == "/") handleOper(e.key);
         if (e.key == "Enter") handleEquals();
-        if (e.key == "Backspace") handleClear();
+        if (e.key == "backspace") handleClear();
     })
 }
 
@@ -58,30 +59,34 @@ function handleNumber(num) {
     displayValue *= 10;
     displayValue += parseInt(num);
     changeDisplay();
+    start = true;
 }
 
 function handleOper(oper) {
-    if (!exists) {
-        numFirst = displayValue;
-        displayValue = 0;
-        exists = true;
-        operator = oper;
-        changeDisplay();
-    }
-    else {
-        numFirst = operate(operator, numFirst, displayValue);
-        operator = oper;
-        displayValue = 0;
-        changeDisplay();
+    if (start) {
+        if (!exists) {
+            numFirst = displayValue;
+            displayValue = 0;
+            exists = true;
+            operator = oper;
+            changeDisplay();
+        }
+        else {
+            numFirst = operate(operator, numFirst, displayValue);
+            operator = oper;
+            displayValue = 0;
+            changeDisplay();
+        }
     }
 }
 
 function handleAc() {
-    let displayValue = 0;
-    let numFirst = 0;
-    let numSecond = 0;
-    let exists = false; 
-    let operator = "none";
+    displayValue = 0;
+    numFirst = 0;
+    numSecond = 0;
+    exists = false; 
+    operator = "none";
+    start = false;
     changeDisplay();
 }
 
@@ -90,16 +95,18 @@ function handleClear() {
 }
 
 function handleEquals() {
-    if (operator === "none") {
-        displayValue = 0;
-        changeDisplay();
-        return;
-    }
+    if (start) {
+        if (operator === "none") {
+            displayValue = 0;
+            changeDisplay();
+            return;
+        }
 
-    displayValue = operate(operator, numFirst, displayValue);
-    operator = "none";
-    exists = false;
-    changeDisplay();
+        displayValue = operate(operator, numFirst, displayValue);
+        operator = "none";
+        exists = false;
+        changeDisplay();
+    }
 }
 
 // Function to change display value
