@@ -1,0 +1,65 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    background-color: #fffcf2;
+    font-family: Roboto, Helvetica, sans-serif;
+    justify-content: space-between;
+}
+
+#header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    font-size: 72px;
+    color: #eb5e28;
+}
+
+#container {
+    display: grid;
+    background-color: #eb5e28;
+    padding: 10px;
+    gap: 10px;
+    grid-template-columns: auto auto auto auto;
+    grid-template-rows: auto auto auto auto auto auto auto;
+    width: 350px;
+    height: 550px;
+    border-radius: 24px;
+}
+
+/*Buttons and display*/
+
+#display {
+    grid-column: 1 / span 4;
+    grid-row: 1 / span 2;
+    background-color: #fffcf2;
+    border-radius: 24px;
+}
+
+#ac-button {
+    grid-column-start: 1;
+    grid-column-end: 2;
+}
+
+#equals-button {
+    grid-row-start: 6;
+    grid-row-end: 8;
+    grid-column-start: 4;
+}
+
+#zero-button {
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+button {
+    border-radius: 24px;
+}
+
+/*     */
